@@ -1,10 +1,11 @@
 {
   "name": "gulp-task-loader",
+  "repository": "https://github.com/hontas/gulp-task-loader",
   "version": "0.0.1",
   "description": "Load gulp tasks from folder",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/test.js"
   },
   "keywords": [
     "gulp",
@@ -12,5 +13,17 @@
     "loader"
   ],
   "author": "Pontus Lundin",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^2.4.1"
+  },
+  "peerDependencies": {
+    "gulp": "^3.8.9"
+  },
+  "optionalDependencies": {
+    "gulp": "^3.8.9"
+  },
+  "devDependencies": {
+    "chalk": "^0.5.1"
+  }
 }
