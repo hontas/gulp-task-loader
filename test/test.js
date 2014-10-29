@@ -1,9 +1,7 @@
 var gulp = require('gulp');
 var chalk = require('chalk');
 
-var tasks = require('../index.js')({
-	dir: 'test/gulp'
-});
+var tasks = require('../index.js')('test/gulp');
 
 function runTask(task, idx, self) {
 	var testNum = [idx + 1, self.length].join('/');
