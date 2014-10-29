@@ -1,0 +1,16 @@
+{
+  "name": "gulp-task-loader",
+  "version": "0.0.1",
+  "description": "Load gulp tasks from folder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gulp",
+    "task",
+    "loader"
+  ],
+  "author": "Pontus Lundin",
+  "license": "MIT"
+}
