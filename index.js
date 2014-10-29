@@ -7,9 +7,9 @@ var defaults = {
 };
 
 module.exports = function(options) {
-	if ("string" === typeof options) {
-		options = { dir: options };
-	}
+	options = ("string" === typeof options) ? { dir: options } :
+		options ? options : {};
+
 	var opts = _.defaults(options || {}, defaults);
 
 	function stripExtension(fileName) {
