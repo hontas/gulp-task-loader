@@ -1,30 +1,49 @@
 Gulp Task Loader
 ================
 
-# Why
-
-- Easily include your broken away gulp-tasks
+Make it easy to organize gulp-tasks in separate files
 
 # Install
 
 ```sh
-npm install gulp-task-loader --save-dev
+npm i gulp-task-loader -D # i=install, -D=--save-dev
 ```
-equivalent to
+
+To be able to run tests
 ```sh
-npm i gulp-task-loader -D
+npm i mocha -g
 ```
 
 # How
 
-Load all files in folder `gulp-tasks` as gulp-tasks
+1. Add a task in the folder of your choice
+2. Require this module [with options]
+
+Given
 
 ```js
-require('gulp-task-loader')();
+// gulp-tasks/copy.js
+module.exports = function() {
+	return gulp.src(src)
+		.pipe(gulp.dest(dist));
+};
 ```
 
-Require all files in folder `gulp` as gulp-tasks
+Load all tasks from `gulp-task`
+```js
+require('gulp-task-loader')();
 
+gulp.watch(someFiles, ['copy']);
+```
+
+Another folder name? No probs broah!
 ```js
 require('gulp-task-loader')('gulp');
 ```
+
+## Options
+
+### dir
+Type `String` Default `gulp-tasks`
+
+Path to folder with gulp tasks

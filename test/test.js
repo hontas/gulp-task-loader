@@ -1,16 +1,38 @@
 var gulp = require('gulp');
-var chalk = require('chalk');
+var expect = require('chai').expect;
 
-var tasks = require('../index.js')('test/gulp');
+describe("gulp-task-loader", function() {
+	describe("without dependencies", function() {
+		var task;
 
-function runTask(task, idx, self) {
-	var testNum = [idx + 1, self.length].join('/');
+		before(function() {
+			require('../index.js')('test/noDeps');
+			task = gulp.tasks['task'];
+		});
 
-	if (gulp.tasks[task].fn() === true) {
-		console.log(chalk.green('Test ' + testNum + ' is ok'));
-	} else {
-		console.log(chalk.red('Test ' + testNum + ' failed'));
-	}
-}
+		it("should return true", function() {
+			expect(task.fn()).to.be.true;
+		});
 
-Object.keys(gulp.tasks).forEach(runTask);
+		it("should not have any dependencies", function() {
+			expect(task.dep).to.be.empty;
+		});
+	});
+
+	describe("with dependencies", function() {
+		var task;
+
+		before(function() {
+			require('../index.js')('test/withDeps');
+			task = gulp.tasks['task'];
+		});
+
+		it("should return true", function() {
+			expect(task.fn()).to.be.true;
+		});
+
+		it("should have dependencies", function() {
+			expect(task.dep).to.not.be.empty;
+		});
+	});
+});
