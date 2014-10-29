@@ -6,11 +6,17 @@ var defaults = {
 	dir: 'gulp-tasks'
 };
 
-module.exports = function(options) {
-	options = ("string" === typeof options) ? { dir: options } :
-		options ? options : {};
+function isString(str) {
+	return "string" === typeof str;
+}
 
-	var opts = _.defaults(options || {}, defaults);
+module.exports = function(options) {
+	if (isString(options)) {
+		options = { dir: options };
+	} else if (!options) {
+		options = {};
+	}
+	var opts = _.defaults(options, defaults);
 
 	function stripExtension(fileName) {
 		return fileName.replace(/\.[A-z]{2,4}$/, '');
