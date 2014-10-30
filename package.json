@@ -18,10 +18,7 @@
     "lodash": "^2.4.1"
   },
   "peerDependencies": {
-    "gulp": "^3.8.9"
-  },
-  "optionalDependencies": {
-    "gulp": "^3.8.9"
+    "gulp": "*"
   },
   "devDependencies": {
     "chai": "^1.9.2"
