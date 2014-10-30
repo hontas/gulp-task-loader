@@ -9,11 +9,6 @@ Make it easy to organize gulp-tasks in separate files
 npm i gulp-task-loader -D # i=install, -D=--save-dev
 ```
 
-To be able to run tests
-```sh
-npm i mocha -g
-```
-
 # How
 
 1. Add a task in the folder of your choice
@@ -47,3 +42,14 @@ require('gulp-task-loader')('gulp');
 Type `String` Default `gulp-tasks`
 
 Path to folder with gulp tasks
+
+## Test
+
+If mocha is not installed do:
+```sh
+npm i mocha -g
+```
+and then
+```sh
+npm test
+```
