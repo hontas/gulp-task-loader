@@ -14,7 +14,7 @@ npm install gulp-task-loader --save-dev
 1. Add a task in the folder of your choice
 2. Require this module [with options]
 
-Given
+### Simple task file
 
 ```js
 // gulp-tasks/copy.js
@@ -24,16 +24,28 @@ module.exports = function() {
 };
 ```
 
-Load all tasks from `gulp-task`
 ```js
+// gulpfile.js
+// Load all tasks from `gulp-task` folder
 require('gulp-task-loader')();
 
+// use it!
 gulp.watch(someFiles, ['copy']);
 ```
 
 Another folder name? No probs broah!
 ```js
 require('gulp-task-loader')('gulp');
+```
+
+### Task file with dependencies
+```js
+// gulp-tasks/task-with-deps.js
+module.exports = function() {
+	return gulp.src(src)
+		.pipe(gulp.dest(dist));
+};
+module.exports.dependencies = ['copy', 'paste'];
 ```
 
 ## Options
