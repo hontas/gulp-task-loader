@@ -1,7 +1,7 @@
 {
   "name": "gulp-task-loader",
   "repository": "https://github.com/hontas/gulp-task-loader.git",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Load gulp tasks from folder",
   "main": "index.js",
   "scripts": {
