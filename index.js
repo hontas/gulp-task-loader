@@ -23,7 +23,7 @@ module.exports = function(options) {
 	}
 
 	function loadTask(taskName) {
-		var task = require('./' + opts.dir + '/' + taskName),
+		var task = require([process.cwd(), opts.dir, taskName].join('/')),
 			dependencies = task.dependencies || [];
 
 		gulp.task(taskName, dependencies, task);
