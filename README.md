@@ -6,7 +6,7 @@ Make it easy to organize gulp-tasks in separate files
 # Install
 
 ```sh
-npm i gulp-task-loader -D # i=install, -D=--save-dev
+npm install gulp-task-loader --save-dev
 ```
 
 # How
