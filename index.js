@@ -16,10 +16,16 @@ module.exports = function(options) {
 	} else if (!options) {
 		options = {};
 	}
+
 	var opts = _.defaults(options, defaults);
+	var isJsFile = /\.js$/i;
+
+	function jsFiles(fileName) {
+		return isJsFile.test(fileName);
+	}
 
 	function stripExtension(fileName) {
-		return fileName.replace(/\.[A-z]{2,4}$/, '');
+		return fileName.replace(isJsFile, '');
 	}
 
 	function loadTask(taskName) {
@@ -30,6 +36,7 @@ module.exports = function(options) {
 	}
 
 	fs.readdirSync(opts.dir)
+		.filter(jsFiles)
 		.map(stripExtension)
 		.forEach(loadTask);
 };

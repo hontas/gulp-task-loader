@@ -35,4 +35,10 @@ describe("gulp-task-loader", function() {
 			expect(task.dep).to.not.be.empty;
 		});
 	});
+
+	describe("filter non js files", function() {
+		it("should filter .jshintrc", function() {
+			require('../index.js')('test/filterOutFiles');
+		});
+	});
 });
