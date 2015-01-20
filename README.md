@@ -55,6 +55,11 @@ Type `String` Default `gulp-tasks`
 
 Path to folder with gulp tasks
 
+### extensions
+Type `Array` Default to keys of `required.extensions`
+
+List of extensions to filter tasks by. Example: `['js', 'coffee']`
+
 ## Test
 
 If mocha is not installed do:

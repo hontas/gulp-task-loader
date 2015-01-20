@@ -18,7 +18,13 @@ module.exports = function(options) {
 	}
 
 	var opts = _.defaults(options, defaults);
-	var isJsFile = /\.js$/i;
+	var exts = opts.extensions ||
+				require.extensions
+					? _.keys(require.extensions)
+						.map(function(e) { return e.substr(1); })
+					: ['js'];
+
+	var isJsFile = new RegExp('\\.(' + exts.join('|') + ')$', 'i');
 
 	function jsFiles(fileName) {
 		return isJsFile.test(fileName);
