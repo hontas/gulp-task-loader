@@ -1,10 +1,11 @@
 'use strict';
 var fs = require('fs');
 var gulp = require('gulp');
+var extensions = Object.keys(require.extensions).map(function(ext) { return ext.substr(1); });
 var defaults = {
 	dir: 'gulp-tasks',
 	coffee: false,
-	exts: require.extensions || ['js']
+	exts: extensions || ['js']
 };
 
 function isString(str) {

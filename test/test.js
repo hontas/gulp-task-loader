@@ -65,7 +65,7 @@ describe('gulp-task-loader', function() {
 	describe('coffeescript', function() {
 		var options = {
 				dir: 'test/coffeeScript',
-				coffee: true
+				exts: ['coffee']
 			},
 			task;
 
@@ -84,22 +84,25 @@ describe('gulp-task-loader', function() {
 		});
 	});
 
-	describe("include extensions in require.extensions", function() {
-		var task, task2;
+	describe('include extensions in require.extensions', function() {
+		var options = {
+				dir: 'test/includeRequireExtensions',
+				exts: ['jscript', 'js']
+			},
+			task, task2;
 
 		before(function() {
-			require.extensions['.jscript'] = require.extensions['.js'];
-			require('../index.js')('test/includeRequireExtensions');
-			task = gulp.tasks['task'];
-			task2 = gulp.tasks['task2'];
+			require('../index.js')(options);
+			task = getTask('task');
+			task2 = getTask('task2');
 		});
 
-		it("task.js should return true", function() {
-			expect(task.fn()).to.be.true;
+		it('task.js should return true', function() {
+			expect(task.fn()).to.equal('.js');
 		});
 
-		it("task2.jscript should also return true", function() {
-			expect(task2.fn()).to.be.true;
+		it('task2.jscript should also return true', function() {
+			expect(task2.fn()).to.equal('.jscript');
 		});
 	});
 });
