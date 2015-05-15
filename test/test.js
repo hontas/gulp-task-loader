@@ -62,47 +62,49 @@ describe('gulp-task-loader', function() {
 		});
 	});
 
-	describe('coffeescript', function() {
-		var options = {
-				dir: 'test/coffeeScript',
-				exts: ['coffee']
-			},
-			task;
-
-		before(function() {
-			require('coffee-script/register');
-			require('../index.js')(options);
-			task = getTask('coffee');
-		});
-
-		it('should return true', function() {
-			expect(task.fn()).to.be.true;
-		});
-
-		it('should have dependencies', function() {
-			expect(task.dep).to.eql(['dep']);
-		});
-	});
-
 	describe('include extensions in require.extensions', function() {
-		var options = {
-				dir: 'test/includeRequireExtensions',
-				exts: ['jscript', 'js']
-			},
-			task, task2;
+		describe('coffeescript', function() {
+			var options = {
+					dir: 'test/coffeeScript',
+					exts: ['coffee']
+				},
+				task;
 
-		before(function() {
-			require('../index.js')(options);
-			task = getTask('task');
-			task2 = getTask('task2');
+			before(function() {
+				require('coffee-script/register');
+				require('../index.js')(options);
+				task = getTask('coffee');
+			});
+
+			it('should return true', function() {
+				expect(task.fn()).to.be.true;
+			});
+
+			it('should have dependencies', function() {
+				expect(task.dep).to.eql(['dep']);
+			});
 		});
 
-		it('task.js should return true', function() {
-			expect(task.fn()).to.equal('.js');
-		});
+		describe('jscript and js', function() {
+			var options = {
+					dir: 'test/includeRequireExtensions',
+					exts: ['jscript', 'js']
+				},
+				task, task2;
 
-		it('task2.jscript should also return true', function() {
-			expect(task2.fn()).to.equal('.jscript');
+			before(function() {
+				require('../index.js')(options);
+				task = getTask('task');
+				task2 = getTask('task2');
+			});
+
+			it('task.js should return true', function() {
+				expect(task.fn()).to.equal('.js');
+			});
+
+			it('task2.jscript should also return true', function() {
+				expect(task2.fn()).to.equal('.jscript');
+			});
 		});
 	});
 });

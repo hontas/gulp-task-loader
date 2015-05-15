@@ -57,7 +57,12 @@ require('gulp-task-loader')('le-tasks-de-gulp');
 ### Load tasks in CoffeeScript
 ```js
 require('coffee-script/register');
-require('gulp-task-loader')({ coffee: true });
+require('gulp-task-loader')({ exts: ['coffee'] });
+```
+
+### Load tasks in other extensions
+```js
+require('gulp-task-loader')({ exts: ['.jscript'] });
 ```
 
 ## Options
@@ -66,11 +71,6 @@ require('gulp-task-loader')({ coffee: true });
 Type `String` Default `gulp-tasks`
 
 Path to folder with gulp tasks
-
-### coffee
-Type `Boolean` Default `false`
-
-If your task-files are written in coffee-script
 
 ### extensions
 Type `Array` Default to keys of `require.extensions`
