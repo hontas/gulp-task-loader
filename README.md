@@ -72,6 +72,11 @@ Type `Boolean` Default `false`
 
 If your task-files are written in coffee-script
 
+### extensions
+Type `Array` Default to keys of `require.extensions`
+
+List of extensions to filter tasks by. Example: `['js', 'coffee']`
+
 ## Test
 
 ```sh

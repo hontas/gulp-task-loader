@@ -83,4 +83,23 @@ describe('gulp-task-loader', function() {
 			expect(task.dep).to.eql(['dep']);
 		});
 	});
+
+	describe("include extensions in require.extensions", function() {
+		var task, task2;
+
+		before(function() {
+			require.extensions['.jscript'] = require.extensions['.js'];
+			require('../index.js')('test/includeRequireExtensions');
+			task = gulp.tasks['task'];
+			task2 = gulp.tasks['task2'];
+		});
+
+		it("task.js should return true", function() {
+			expect(task.fn()).to.be.true;
+		});
+
+		it("task2.jscript should also return true", function() {
+			expect(task2.fn()).to.be.true;
+		});
+	});
 });

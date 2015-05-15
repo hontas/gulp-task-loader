@@ -3,7 +3,8 @@ var fs = require('fs');
 var gulp = require('gulp');
 var defaults = {
 	dir: 'gulp-tasks',
-	coffee: false
+	coffee: false,
+	exts: require.extensions || ['js']
 };
 
 function isString(str) {
@@ -27,9 +28,7 @@ module.exports = function(options) {
 	}
 
 	var opts = getDefaults(options);
-	var isJsFile = /\.js$/i;
-	var isCoffeeFile = /\.coffee$/i;
-	var fileRegExp = opts.coffee ? isCoffeeFile : isJsFile;
+	var fileRegExp = new RegExp('\\.(' + opts.exts.join('|') + ')$', 'i');
 
 	function byExtension(fileName) {
 		return fileRegExp.test(fileName);
