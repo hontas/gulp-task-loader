@@ -2,6 +2,7 @@ Gulp Task Loader
 ================
 
 [![Dependency Status](https://david-dm.org/hontas/gulp-task-loader.svg)](https://david-dm.org/hontas/gulp-task-loader)
+[![Build Status](https://travis-ci.org/hontas/gulp-task-loader.svg?branch=master)](https://travis-ci.org/hontas/gulp-task-loader)
 
 Organize your gulp-tasks in separate files
 
