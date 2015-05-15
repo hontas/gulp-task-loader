@@ -8,6 +8,7 @@
 		"quotes": [2, "single"],
 		"yoda": [1, "always"],
 		"no-irregular-whitespace": 1,
-		"strict": [2, "global"]
+		"strict": [2, "global"],
+		"no-console": 1
 	}
 }
