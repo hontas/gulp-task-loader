@@ -1,7 +1,7 @@
 {
   "name": "gulp-task-loader",
   "repository": "https://github.com/hontas/gulp-task-loader.git",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Load gulp tasks from folder",
   "main": "index.js",
   "scripts": {
@@ -14,13 +14,13 @@
   ],
   "author": "Pontus Lundin",
   "license": "MIT",
-  "dependencies": {
-    "lodash": "^2.4.1"
-  },
   "peerDependencies": {
     "gulp": "*"
   },
   "devDependencies": {
-    "chai": "^1.9.2"
+    "chai": "^2.3.0",
+    "coffee-script": "^1.9.2",
+    "gulp": "^3.8.11",
+    "mocha": "^2.2.5"
   }
 }

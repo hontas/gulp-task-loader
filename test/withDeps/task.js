@@ -1,5 +1,7 @@
+'use strict';
+
 module.exports = function() {
-	return true;
+	return 'with deps';
 };
 
 module.exports.dependencies = ['dep'];

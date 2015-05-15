@@ -1,51 +1,63 @@
 Gulp Task Loader
 ================
 
-Make it easy to organize gulp-tasks in separate files
+[![Dependency Status](https://david-dm.org/hontas/gulp-task-loader.svg)](https://david-dm.org/hontas/gulp-task-loader)
+
+Organize your gulp-tasks in separate files
 
 # Install
 
-```sh
-npm install gulp-task-loader --save-dev
+```shell
+npm i gulp-task-loader -D
+# -D is the same as --save-dev
 ```
 
-# How
+# Use
 
-1. Add a task in the folder of your choice
-2. Require this module [with options]
+1. Create one file / task
+2. Place the task-files in a folder named 'gulp-tasks' (or whatever you like)
+3. Require this module [optionally with options]
+4. Gulp-tasks now exist (named after task file name)
+
+## Examples
 
 ### Simple task file
-
 ```js
 // gulp-tasks/copy.js
 module.exports = function() {
-	return gulp.src(src)
-		.pipe(gulp.dest(dist));
+	return gulp.src("src/**/*")
+		.pipe(gulp.dest("dist/**/*"));
 };
 ```
 
 ```js
 // gulpfile.js
-// Load all tasks from `gulp-task` folder
+// Load all tasks from folder `gulp-tasks`
 require('gulp-task-loader')();
 
 // use it!
 gulp.watch(someFiles, ['copy']);
 ```
 
-Another folder name? No probs broah!
-```js
-require('gulp-task-loader')('gulp');
-```
-
-### Task file with dependencies
+### With dependencies
 ```js
 // gulp-tasks/task-with-deps.js
 module.exports = function() {
-	return gulp.src(src)
-		.pipe(gulp.dest(dist));
+    return gulp.src("src/**/*")
+        .pipe(gulp.dest("dist/**/*"));
 };
-module.exports.dependencies = ['copy', 'paste'];
+module.exports.dependencies = ['copy'];
+```
+
+### Load tasks from another folder
+```js
+require('gulp-task-loader')('le-tasks-de-gulp');
+```
+
+### Load tasks in CoffeeScript
+```js
+require('coffee-script/register');
+require('gulp-task-loader')({ coffee: true });
 ```
 
 ## Options
@@ -55,13 +67,13 @@ Type `String` Default `gulp-tasks`
 
 Path to folder with gulp tasks
 
+### coffee
+Type `Boolean` Default `false`
+
+If your task-files are written in coffee-script
+
 ## Test
 
-If mocha is not installed do:
-```sh
-npm i mocha -g
-```
-and then
 ```sh
 npm test
 ```
