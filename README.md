@@ -83,3 +83,13 @@ List of extensions to filter tasks by. Example: `['js', 'coffee']`
 ```sh
 npm test
 ```
+
+## Changelog
+
+#### 1.1.0
+
+* added support for other sources than .js. Thanks to [@blvz](https://github.com/blvz).
+
+#### pre 1.1.0
+
+* the dark ages of not documenting version bumps..
