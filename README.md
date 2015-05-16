@@ -1,10 +1,9 @@
 Gulp Task Loader
 ================
 
-[![npm](https://nodei.co/npm/gulp-task-loader.svg?downloads=true)](https://nodei.co/npm/gulp-task-loader/)
-
 > Organize your gulp-tasks in separate files
 
+[![Dependency Status](https://david-dm.org/hontas/gulp-task-loader.svg)](https://david-dm.org/hontas/gulp-task-loader)
 [![Build Status](https://travis-ci.org/hontas/gulp-task-loader.svg?branch=master)](https://travis-ci.org/hontas/gulp-task-loader)
 
 # Install
