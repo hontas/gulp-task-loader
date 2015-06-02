@@ -56,6 +56,17 @@ describe('gulp-task-loader', function() {
 		});
 	});
 
+	describe('load subtasks in nested folders', function () {
+
+		it('Should load tasks in a subfolder and namespace them', function () {
+			require('../index.js')('test/subtasks');
+
+			expect(getTask('annotate:add')).to.be.defined;
+			expect(getTask('annotate:remove')).to.be.defined;
+		});
+
+	});
+
 	describe('filter non js files', function() {
 		it('should filter .jshintrc', function() {
 			expect(require('../index.js').bind(null, 'test/filterOutFiles')).to.not.throw();
