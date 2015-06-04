@@ -69,6 +69,7 @@ describe('gulp-task-loader', function() {
 
 	describe('filter non js files', function() {
 		it('should filter .jshintrc', function() {
+			require('../index.js').bind(null, 'test/filterOutFiles')()
 			expect(require('../index.js').bind(null, 'test/filterOutFiles')).to.not.throw();
 		});
 	});

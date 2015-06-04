@@ -63,7 +63,8 @@ module.exports = function(options) {
 
 		if (stat.isFile() && byExtension(dir)) {
 			loadTask(null, dir);
-		} else {
+		} else if (!stat.isFile()) {
+			// If the entry is not a file then we know it's a folder to read
 			fs.readdirSync(
 				path.join(opts.dir, dir)
 			)
