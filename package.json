@@ -5,7 +5,7 @@
   "description": "Load gulp tasks from folder",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter nyan 'test/'"
+    "test": "eslint . && mocha --reporter nyan 'test/'"
   },
   "keywords": [
     "gulp",
@@ -20,7 +20,11 @@
   "devDependencies": {
     "chai": "^2.3.0",
     "coffee-script": "^1.9.2",
+    "eslint": "^0.22.1",
     "gulp": "^3.8.11",
     "mocha": "^2.2.5"
+  },
+  "dependencies": {
+    "lodash": "^3.9.3"
   }
 }

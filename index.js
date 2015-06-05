@@ -1,28 +1,23 @@
 'use strict';
+var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var gulp = require('gulp');
-var extensions = Object.keys(require.extensions).map(getExtension);
-var defaults = {
-	dir: 'gulp-tasks',
-	exts: extensions || ['js'] // fallback to .js
-};
 
 function isString(str) {
 	return 'string' === typeof str;
 }
 
-function getExtension(ext) {
-	return ext.substr(1);
+function getExtensions() {
+	return Object
+		.keys(require.extensions);
 }
 
-function getDefaults(options) {
-	return Object
-		.keys(defaults)
-		.reduce(function(ret, key) {
-			ret[key] = options.hasOwnProperty(key) ? options[key] : defaults[key];
-			return ret;
-		}, {});
+function getDefaults() {
+	return {
+		dir: 'gulp-tasks',
+		exts: getExtensions() || ['.js'] // fallback
+	};
 }
 
 module.exports = function(options) {
@@ -32,47 +27,52 @@ module.exports = function(options) {
 		options = {};
 	}
 
-	var opts = getDefaults(options);
-	var fileRegExp = new RegExp('\\.(' + opts.exts.join('|') + ')$', 'i');
+	var opts = _.defaults(options, getDefaults());
 
 	function byExtension(fileName) {
-		return fileRegExp.test(fileName);
+		var extension = path.extname(fileName);
+		return ~opts.exts.indexOf(extension);
 	}
 
 	function stripExtension(fileName) {
-		return fileName.replace(fileRegExp, '');
+		var extension = path.extname(fileName);
+		return path.basename(fileName, extension);
 	}
 
 	function loadTask(parent, task) {
-		var modulePath = path.join(process.cwd(), opts.dir, parent || '', task);
+		var modulePath = path.join(__dirname, opts.dir, parent || '', task);
 		var func = require(modulePath);
-		var dependencies = func.dependencies || [];
+		var dependencies = func.dependencies || [];
 		var taskName = stripExtension(task);
 
-		// If this task was in a subdirectory then namespace it like so:
-		// "parent:child"
+		// If subtask -> namespace: "parent:child"
 		if (parent) {
-			taskName = parent.concat(':').concat(taskName);
+			taskName = parent + ':' + taskName;
 		}
 
 		gulp.task(taskName, dependencies, func);
 	}
 
-	function loadTasks (dir) {
-		var stat = fs.lstatSync(path.join(opts.dir, dir));
+	function resolvePath(dir) {
+		return path.join(opts.dir, dir);
+	}
 
-		if (stat.isFile() && byExtension(dir)) {
-			loadTask(null, dir);
-		} else if (!stat.isFile()) {
-			// If the entry is not a file then we know it's a folder to read
-			fs.readdirSync(
-				path.join(opts.dir, dir)
-			)
-			.filter(byExtension)
-			.forEach(loadTask.bind(opts.dir, dir));
+	function loadTasks(currentPath) {
+		var file = path.basename(currentPath);
+		var stats = fs.lstatSync(currentPath);
+
+		if (stats.isFile() && byExtension(file)) {
+			loadTask(null, file);
+		}
+
+		if (stats.isDirectory()) {
+			fs.readdirSync(currentPath)
+				.filter(byExtension)
+				.forEach(loadTask.bind(null, file));
 		}
 	}
 
 	fs.readdirSync(opts.dir)
+		.map(resolvePath)
 		.forEach(loadTasks);
 };

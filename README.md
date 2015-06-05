@@ -58,13 +58,26 @@ require('gulp-task-loader')('le-tasks-de-gulp');
 ### Load tasks in CoffeeScript
 ```js
 require('coffee-script/register');
-require('gulp-task-loader')({ exts: ['coffee'] });
+require('gulp-task-loader')({ exts: ['.coffee'] });
 ```
 
 ### Load tasks in other extensions
 ```js
 require('gulp-task-loader')({ exts: ['.jscript'] });
 ```
+
+### Subtasks
+
+```js
+// gulp-tasks/copy/all.js
+// gulp-tasks/copy/fonts.js
+
+// gulpfile.js
+gulp.watch(allFiles, ['copy:all']);
+gulp.watch(someFiles, ['copy:fonts']);
+```
+
+Given the files in folder *copy* - two tasks have been created. `copy:all` & `copy:fonts` 
 
 ## Options
 
@@ -76,7 +89,7 @@ Path to folder with gulp tasks
 ### extensions
 Type `Array` Default to keys of `require.extensions`
 
-List of extensions to filter tasks by. Example: `['js', 'coffee']`
+List of extensions to filter tasks by. Example: `['.js', '.coffee']`
 
 ## Test
 
@@ -85,6 +98,10 @@ npm test
 ```
 
 ## Changelog
+
+#### 1.2.0
+
+* tasks in subfolder will be named `folderName:taskName`. Thanks to [@evanshortiss](https://github.com/evanshortiss).
 
 #### 1.1.0
 
