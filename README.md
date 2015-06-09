@@ -99,6 +99,9 @@ npm test
 
 ## Changelog
 
+#### 1.2.1
+* Load tasks relative to project. Thanks to [@archr](https://github.com/archr)
+
 #### 1.2.0
 
 * tasks in subfolder will be named `folderName:taskName`. Thanks to [@evanshortiss](https://github.com/evanshortiss).
