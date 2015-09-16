@@ -32,11 +32,3 @@
     "lodash": "^3.9.3"
   }
 }
-
-// git ci -am "imporoved docu"
-//
-// npm version [major | minor | patch] -m "Bumped version to %s for reasons"
-// creates new tag? -> git tag vX.X.X
-//
-// git push (-u origin master) --tags
-// npm publish ./
