@@ -31,6 +31,23 @@ describe('gulp-task-loader', function() {
 		});
 	});
 
+    describe('can access options passed to gulp-task-loader', function() {
+		beforeEach(function() {
+			require('../index.js')({
+                fa: 'boo'
+            });
+		});
+		it('should contain a property name "opts"', function() {
+            var self = callTask('opts-test');
+			expect(self).to.have.property('opts');
+		});
+
+        it('should contain a property name "fa" and its value is "boo"', function() {
+            var self = callTask('opts-test');
+			expect(self.opts.fa).to.equal('boo');
+		});
+	});
+
 	describe('without dependencies', function() {
 		beforeEach(function() {
 			require('../index.js')('test/noDeps');
