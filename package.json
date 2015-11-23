@@ -9,7 +9,8 @@
     "minor": "npm version minor -m 'New minor version %s' && npm publish",
     "patch": "npm version patch -m 'New patch version %s' && npm publish",
     "postpublish": "git push && git push --tags",
-    "test": "eslint . && mocha --reporter nyan 'test/'"
+    "test": "eslint . && mocha --reporter dot",
+    "tdd": "npm run test -- --watch --reporter nyan"
   },
   "keywords": [
     "gulp",
