@@ -67,9 +67,9 @@ require('gulp-task-loader')({ exts: ['.coffee'] });
 require('gulp-task-loader')({ exts: ['.jscript'] });
 ```
 
-### Load tasks along with custom data (New feature in v1.2.4)
+### Load tasks along with custom data (New feature in v1.3.0)
 
-In v1.2.4, `gulp-task-loader` can pass the `gulp` object and its configurations to every loaded task.
+In v1.3.0, `gulp-task-loader` can pass the `gulp` object and its configurations to every loaded task.
 It means that we share any custom data or configurations between tasks from now on. 
 For example, we can pass package.json to every single task as below:
 
