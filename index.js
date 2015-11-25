@@ -41,13 +41,17 @@ module.exports = function(options) {
 		var func = require(modulePath);
 		var dependencies = func.dependencies || [];
 		var taskName = stripExtension(task);
-
+		// Pass reusable objects and options to every task.
+		var thisRef = {
+			gulp: gulp,
+			opts: opts
+		};
 		// If subtask -> namespace: "parent:child"
 		if (parent) {
 			taskName = parent + ':' + taskName;
 		}
 
-		gulp.task(taskName, dependencies, func);
+		gulp.task(taskName, dependencies, func.bind(thisRef));
 	}
 
 	function resolvePath(dir) {
