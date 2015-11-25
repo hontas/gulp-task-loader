@@ -67,27 +67,18 @@ require('gulp-task-loader')({ exts: ['.coffee'] });
 require('gulp-task-loader')({ exts: ['.jscript'] });
 ```
 
-### Load tasks along with custom data (New feature in v1.3.0)
+### Task context
 
-In v1.3.0, `gulp-task-loader` can pass the `gulp` object and its configurations to every loaded task.
-It means that we share any custom data or configurations between tasks from now on. 
-For example, we can pass package.json to every single task as below:
-
-In `gulpfile.js`,
-
+Each task is called with a context object containing a reference to `gulp` and `opts` (the options object).
 ```js
+// gulpfile.js
 var pkg ＝ require('./package.json');
-require('gulp-task-loader')({pkg: pkg});
-```
-In gulp-tasks/xxx.js, we can access pkg as below:
+require('gulp-task-loader')({ pkg: pkg, dest: 'dist' });
 
-```js
+// gulp-tasks/xxx.js
 module.exports = function() {
-    console.log( this );
-    //access to the package.json
-    console.log( this.opts.pkg );
-    // reuse gulp object
-    console.log( this.gulp );
+    return this.gulp.src(this.opts.pkg.main)
+      .pipe(this.gulp.dest(this.opts.dest));
 };
 ```
 
@@ -126,6 +117,7 @@ npm test
 
 #### 1.3.0
 * Replaced lodash.defaults with object-assign
+* Call tasks with context. Thanks to [@mamboer](https://github.com/mamboer)
 
 #### 1.2.1
 * Load tasks relative to project. Thanks to [@archr](https://github.com/archr)
