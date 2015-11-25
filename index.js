@@ -1,16 +1,15 @@
 'use strict';
-var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var gulp = require('gulp');
+var assign = require('object-assign');
 
 function isString(str) {
 	return 'string' === typeof str;
 }
 
 function getExtensions() {
-	return Object
-		.keys(require.extensions);
+	return Object.keys(require.extensions);
 }
 
 function getDefaults() {
@@ -23,11 +22,9 @@ function getDefaults() {
 module.exports = function(options) {
 	if (isString(options)) {
 		options = { dir: options };
-	} else if (!options) {
-		options = {};
 	}
 
-	var opts = _.defaults(options, getDefaults());
+	var opts = assign(getDefaults(), options);
 
 	function byExtension(fileName) {
 		var extension = path.extname(fileName);

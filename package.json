@@ -1,7 +1,7 @@
 {
   "name": "gulp-task-loader",
   "repository": "https://github.com/hontas/gulp-task-loader.git",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "Load gulp tasks from folder",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "minor": "npm version minor -m 'New minor version %s' && npm publish",
     "patch": "npm version patch -m 'New patch version %s' && npm publish",
     "postpublish": "git push && git push --tags",
-    "test": "eslint . && mocha --reporter nyan 'test/'"
+    "test": "eslint . && mocha --reporter dot",
+    "tdd": "npm run test -- --watch --reporter nyan"
   },
   "keywords": [
     "gulp",
@@ -22,13 +23,13 @@
     "gulp": "*"
   },
   "devDependencies": {
-    "chai": "^2.3.0",
-    "coffee-script": "^1.9.2",
-    "eslint": "^0.22.1",
-    "gulp": "^3.8.11",
-    "mocha": "^2.2.5"
+    "chai": "^3.4.1",
+    "coffee-script": "^1.10.0",
+    "eslint": "^1.10.1",
+    "gulp": "^3.9.0",
+    "mocha": "^2.3.4"
   },
   "dependencies": {
-    "lodash": "^3.9.3"
+    "object-assign": "^4.0.1"
   }
 }

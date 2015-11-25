@@ -4,21 +4,22 @@ Gulp Task Loader
 > Organize your gulp-tasks in separate files
 
 [![Dependency Status](https://david-dm.org/hontas/gulp-task-loader.svg)](https://david-dm.org/hontas/gulp-task-loader)
+[![DevDependency Status](https://david-dm.org/hontas/gulp-task-loader/dev-status.svg)](https://david-dm.org/hontas/gulp-task-loader#info=devDependencies)
+[![PeerDependency Status](https://david-dm.org/hontas/gulp-task-loader/peer-status.svg)](https://david-dm.org/hontas/gulp-task-loader#info=peerDependencies)
 [![Build Status](https://travis-ci.org/hontas/gulp-task-loader.svg?branch=master)](https://travis-ci.org/hontas/gulp-task-loader)
 
 # Install
 
 ```shell
-npm i gulp-task-loader -D
-# -D is the same as --save-dev
+npm install gulp-task-loader --save-dev
 ```
 
 # Use
 
 1. Create one file / task
 2. Place the task-files in a folder named 'gulp-tasks' (or whatever you like)
-3. Require this module [optionally with options]
-4. Gulp-tasks now exist (named after task file name)
+3. Require this module and invoke it [with or without options]
+4. Gulp-tasks now magically exist (named after task file name)
 
 ## Examples
 
@@ -101,7 +102,7 @@ gulp.watch(allFiles, ['copy:all']);
 gulp.watch(someFiles, ['copy:fonts']);
 ```
 
-Given the files in folder *copy* - two tasks have been created. `copy:all` & `copy:fonts` 
+Given the files in folder *copy* - two tasks have been created. `copy:all` & `copy:fonts`
 
 ## Options
 
@@ -122,6 +123,9 @@ npm test
 ```
 
 ## Changelog
+
+#### 1.3.0
+* Replaced lodash.defaults with object-assign
 
 #### 1.2.1
 * Load tasks relative to project. Thanks to [@archr](https://github.com/archr)
