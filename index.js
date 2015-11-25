@@ -15,7 +15,7 @@ function getExtensions() {
 function getDefaults() {
 	return {
 		dir: 'gulp-tasks',
-		exts: getExtensions() || ['.js'] // fallback
+		exts: getExtensions() || ['.js']
 	};
 }
 
@@ -41,17 +41,17 @@ module.exports = function(options) {
 		var func = require(modulePath);
 		var dependencies = func.dependencies || [];
 		var taskName = stripExtension(task);
-		// Pass reusable objects and options to every task.
-		var thisRef = {
+		var context = {
 			gulp: gulp,
 			opts: opts
 		};
+
 		// If subtask -> namespace: "parent:child"
 		if (parent) {
 			taskName = parent + ':' + taskName;
 		}
 
-		gulp.task(taskName, dependencies, func.bind(thisRef));
+		gulp.task(taskName, dependencies, func.bind(context));
 	}
 
 	function resolvePath(dir) {
