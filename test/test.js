@@ -32,31 +32,25 @@ describe('gulp-task-loader', function() {
 	});
 
 	describe('can pass gulp and options to tasks', function() {
+		var options = {
+			dir: 'test/passingGulpAndOptionsToTasks',
+			foo: 'bar'
+		};
+
 		beforeEach(function() {
-			require('../index.js')({
-				dir: 'test/passingGulpAndOptionsToTasks',
-				fa: 'boo'
-			});
+			require('../index.js')(options);
 		});
 
-		it('should contain a property named "gulp"', function() {
+		it('should be invoked with reference to gulp', function() {
 			var self = callTask('test');
 			expect(self).to.have.property('gulp');
-		});
-
-		it('should return true', function() {
-			var self = callTask('test');
 			expect(self.gulp).to.equal(gulp);
 		});
 
-		it('should contain a property name "opts"', function() {
+		it('should contain options as opts', function() {
 			var self = callTask('test');
 			expect(self).to.have.property('opts');
-		});
-
-		it('should contain a property name "fa" and its value is "boo"', function() {
-			var self = callTask('test');
-			expect(self.opts.fa).to.equal('boo');
+			expect(self.opts).to.have.keys(['dir', 'exts', 'foo']);
 		});
 	});
 
