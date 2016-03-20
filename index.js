@@ -61,7 +61,7 @@ module.exports = function(options) {
 	function loadTasks(currentPath) {
 		var file = path.basename(currentPath);
 		var stats = fs.lstatSync(currentPath);
-		
+
 		if (stats.isFile() && byExtension(file)) {
 			loadTask(currentPath.split('/').slice(opts.dir.split('/').length, -1), file);
 		}
