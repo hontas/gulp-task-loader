@@ -36,8 +36,8 @@ module.exports = function(options) {
 		return path.basename(fileName, extension);
 	}
 
-	function loadTask(parent, task) {
-		var modulePath = path.join(process.cwd(), opts.dir, parent || '', task);
+	function loadTask(parents, task) {
+		var modulePath = path.join(process.cwd(), opts.dir, parents.join('/') || '', task);
 		var func = require(modulePath);
 		var dependencies = func.dependencies || [];
 		var taskName = stripExtension(task);
@@ -47,8 +47,8 @@ module.exports = function(options) {
 		};
 
 		// If subtask -> namespace: "parent:child"
-		if (parent) {
-			taskName = parent + ':' + taskName;
+		if (parents.length) {
+			taskName = parents.join(':') + ':' + taskName;
 		}
 
 		gulp.task(taskName, dependencies, func.bind(context));
@@ -63,17 +63,15 @@ module.exports = function(options) {
 		var stats = fs.lstatSync(currentPath);
 
 		if (stats.isFile() && byExtension(file)) {
-			loadTask(null, file);
+			loadTask(currentPath.split('/').slice(opts.dir.split('/').length, -1), file);
 		}
-
-		if (stats.isDirectory()) {
+		else if (stats.isDirectory()) {
 			fs.readdirSync(currentPath)
-				.filter(byExtension)
-				.forEach(loadTask.bind(null, file));
+				.forEach(function(subPath){
+					loadTasks(path.join(currentPath, subPath));
+				});
 		}
 	}
-
-	fs.readdirSync(opts.dir)
-		.map(resolvePath)
-		.forEach(loadTasks);
+	
+	loadTasks(opts.dir);
 };

@@ -21,6 +21,8 @@ npm install gulp-task-loader --save-dev
 3. Require this module and invoke it [with or without options]
 4. Gulp-tasks now magically exist (named after task file name)
 
+You may create subfolders of tasks as well. Tasks in these folders will have their task name prefixed by the folder name. For example, if you have a task named `coffee` that compiles CoffeeScript files, you could place this task in the `gulp-tasks/browser` folder and it would be invoked using `gulp browser:coffee`. You may nest folders as deep as required, and each folder will be added to the task name.
+
 ## Examples
 
 ### Simple task file
