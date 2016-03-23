@@ -117,6 +117,9 @@ npm test
 
 ## Changelog
 
+#### 1.4.0
+* Allow loading of infinitely nested children directories
+
 #### 1.3.0
 * Replaced lodash.defaults with object-assign
 * Call tasks with context. Thanks to [@mamboer](https://github.com/mamboer)
