@@ -62,10 +62,6 @@ module.exports = function(options) {
 		gulp.task(taskName, dependencies, func.bind(context));
 	}
 
-	function resolvePath(dir) {
-		return path.join(opts.dir, dir);
-	}
-
 	function loadTasks(currentPath) {
 		var file = path.basename(currentPath);
 		var stats = fs.lstatSync(currentPath);
