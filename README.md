@@ -117,6 +117,9 @@ npm test
 
 ## Changelog
 
+### 1.4.1
+* Fixed bug that caused subtasks to break
+
 #### 1.4.0
 * Allow loading of infinitely nested children directories
 
