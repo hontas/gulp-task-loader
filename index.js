@@ -21,7 +21,9 @@ function getDefaults() {
 
 function cleanDir(options) {
 	if (!options.dir) return;
-	options.dir = options.dir.replace(/^\.\//, '');
+	options.dir = options.dir
+		.replace(/^\.\//, '')
+		.replace(/\/$/, '');
 }
 
 module.exports = function(options) {
