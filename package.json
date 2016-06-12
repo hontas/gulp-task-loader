@@ -8,7 +8,7 @@
     "major": "npm version major -m 'New major version %s' && npm publish",
     "minor": "npm version minor -m 'New minor version %s' && npm publish",
     "patch": "npm version patch -m 'New patch version %s' && npm publish",
-    "prepublish": "git push --follow-tags",
+    "postpublish": "git push --follow-tags",
     "test": "eslint . && mocha --reporter dot",
     "tdd": "npm run test -- --watch --reporter nyan"
   },
