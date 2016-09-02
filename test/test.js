@@ -88,11 +88,10 @@ describe('gulp-task-loader', function() {
 		});
 
 		it('Should load tasks in a subfolder and namespace them', function () {
-			expect(getTask('annotate:add')).to.be.defined;
-			expect(getTask('annotate:remove')).to.be.defined;
-			expect(getTask('annotate:docs:comment')).to.be.defined;
+			expect(getTask('annotate:add')).to.be.ok;
+			expect(getTask('annotate:remove')).to.be.ok;
+			expect(getTask('annotate:docs:comment')).to.be.ok;
 		});
-
 	});
 
 	describe('filter non js files', function() {
@@ -143,9 +142,9 @@ describe('gulp-task-loader', function() {
 		});
 
 		it('Should load tasks in a subfolder and namespace them as before', function () {
-			expect(getTask('annotate:add')).to.be.defined;
-			expect(getTask('annotate:remove')).to.be.defined;
-			expect(getTask('annotate:docs:comment')).to.be.defined;
+			expect(getTask('annotate:add')).to.be.ok;
+			expect(getTask('annotate:remove')).to.be.ok;
+			expect(getTask('annotate:docs:comment')).to.be.ok;
 		});
 	});
 
@@ -155,9 +154,9 @@ describe('gulp-task-loader', function() {
 		});
 
 		it('Should load tasks in a subfolder and namespace them as before', function () {
-			expect(getTask('annotate:add')).to.be.defined;
-			expect(getTask('annotate:remove')).to.be.defined;
-			expect(getTask('annotate:docs:comment')).to.be.defined;
+			expect(getTask('annotate:add')).to.be.ok;
+			expect(getTask('annotate:remove')).to.be.ok;
+			expect(getTask('annotate:docs:comment')).to.be.ok;
 		});
 	});
 });
