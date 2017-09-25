@@ -70,7 +70,9 @@ module.exports = function(options) {
 		var stats = fs.lstatSync(currentPath);
 
 		if (stats.isFile() && byExtension(file)) {
-			loadTask(currentPath.split(path.sep).slice(opts.dir.split(path.sep).length, -1), file);
+			var pathWithoutBaseDir = currentPath.replace(path.normalize(opts.dir), '').substr(1);
+			var pathSegmentsCount = pathWithoutBaseDir.split(path.sep).length;
+			loadTask(pathWithoutBaseDir.split(path.sep).slice(0, pathSegmentsCount - 1), file);
 		}
 		else if (stats.isDirectory()) {
 			fs.readdirSync(currentPath)
