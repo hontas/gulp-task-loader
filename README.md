@@ -8,6 +8,9 @@ Gulp Task Loader
 [![PeerDependency Status](https://david-dm.org/hontas/gulp-task-loader/peer-status.svg)](https://david-dm.org/hontas/gulp-task-loader#info=peerDependencies)
 [![Build Status](https://travis-ci.org/hontas/gulp-task-loader.svg?branch=master)](https://travis-ci.org/hontas/gulp-task-loader)
 
+## Not actively maintained
+Because I rarely use gulp these days. Wanna take over? Tell me.
+
 # Install
 
 ```shell
